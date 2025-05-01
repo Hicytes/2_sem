@@ -11,9 +11,11 @@ Circle welzl(Point* points, int n, Point* boundary, int b) {
         return circle_3_points(boundary[0], boundary[1], boundary[2]);
     }
 
-    int i = (int)(xoroshiro128plus() % n);
+    int i = xoroshiro128plus() % n;
     Point p = points[i];
-    points[i] = points[n - 1];
+    Point temp = points[n - 1];
+    points[n - 1] = p;
+    points[i] = temp;
 
     Circle c = welzl(points, n - 1, boundary, b);
 
@@ -33,8 +35,9 @@ Circle mec(Point* points, int n) {
         perror("Не удалось выделить память");
         return (Circle){ {0, 0}, -1 };
     }
-
+	
     memcpy(points_copy, points, n * sizeof(Point));
+    shuffle(points_copy, n);
 
     Point boundary[3];
     Circle result = welzl(points_copy, n, boundary, 0);
