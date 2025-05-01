@@ -37,39 +37,38 @@
 ```bash
 make
 ```
-
 ## Minimum enclosing circle
 
 ### Структура проекта
 
-- **src/main.c** — точка входа в программу.
+- **src/main.c** — точка входа в программу.  
   Здесь происходит:
   - Ввод данных о точках.
   - Вызов функций для нахождения окружности.
   - Вывод ответа.
 
 - **src/geometry.c** — геометрические вспомогательные функции:
-   - `double distance2(Point p1, Point p2)` — считает квадрат расстояния между двумя точками.
-   - `Circle circle_2_points(Point p1, Point p2)` — строит окружность по двум точкам.
-   - `Circle circle_3_points` — строит окружность по трем точкам.
-   - `bool point_in_circle(Circle circle, Point p)` — возвращает `true` если точка лежит внутри окружности, `false` в противном случае.
+  - `double distance2(Point p1, Point p2)` — считает квадрат расстояния между двумя точками.
+  - `Circle circle_2_points(Point p1, Point p2)` — строит окружность по двум точкам.
+  - `Circle circle_3_points(Point p1, Point p2, Point p3)` — строит окружность по трём точкам.
+  - `bool point_in_circle(Circle circle, Point p)` — возвращает `true`, если точка лежит внутри окружности.
 
-- **src/random.c** — реализация псевдослучайной генерации чисел [xoroshiri128+](http://prng.di.unimi.it/xoroshiro128plus.c) — ссылка на оригинал.
-   -`uint64_t xoroshiro128plus(void)` — псевдослучайная генерация чисел xoroshiro128+.
-   -`void seed_rng(uint64_t seed1, uint64_t seed2)` — установка начального состояния генератора.
-   -`void seed_rng_auto()` — автоматическая инициализация генератора с использованием текущего времени.
-   -`void shuffle(Point* points, int count)` — перемешивание массива алгоритмом Фишера-Йетса с использованием рандома xoroshiro128+.
-   -`static inline uint64_t rotl(uint64_t x, int k)` — циклический побитовый сдвиг влево.
+- **src/random.c** — реализация псевдослучайной генерации чисел [xoroshiro128+](http://prng.di.unimi.it/xoroshiro128plus.c) — ссылка на оригинал.
+  - `uint64_t xoroshiro128plus(void)` — генерация псевдослучайного числа.
+  - `void seed_rng(uint64_t seed1, uint64_t seed2)` — установка начального состояния генератора.
+  - `void seed_rng_auto(void)` — автоматическая инициализация генератора временем.
+  - `void shuffle(Point* points, int count)` — перемешивание массива (алгоритм Фишера-Йетса).
+  - `static inline uint64_t rotl(uint64_t x, int k)` — циклический побитовый сдвиг влево.
 
-- **src/welzl.c** — сам алгоритм Велцеля нахождения минимальной покрывающей окружности за линейное(в среднем) время.
-   -`Circle welzl(Point* points, int n, Point* boundary, int b)` — рекурсивная функция алгоритма.
-   -`Circle mec(Point* points, int n)` — основная обертка алгоритма Велцеля.
+- **src/welzl.c** — реализация алгоритма Велцеля (нахождение минимальной описывающей окружности за линейное в среднем время):
+  - `Circle welzl(Point* points, int n, Point* boundary, int b)` — рекурсивная функция.
+  - `Circle mec(Point* points, int n)` — обёртка для вызова алгоритма.
 
 - **include/** — папка с заголовочными файлами (`.h`):
   - Описания структур и объявление функций.
 
 - **Makefile** — позволяет собрать проект командой `make`.
-- **.gitignore** — исключает бинарные файлы (`check`, `.o`) и временные файлы из Git.
+- **.gitignore** — исключает бинарные и временные файлы (`check`, `.o`) из Git.
 
 ---
 
@@ -78,5 +77,5 @@ make
 ```bash
 mkdir -p obj
 make
-```
+
 
