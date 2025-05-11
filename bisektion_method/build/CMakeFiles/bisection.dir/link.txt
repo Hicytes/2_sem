@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/bisection.dir/link.d CMakeFiles/bisection.dir/main.c.o CMakeFiles/bisection.dir/bisection.c.o CMakeFiles/bisection.dir/functions.c.o -o bisection  -lm
