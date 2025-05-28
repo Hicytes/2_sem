@@ -1,3 +1,4 @@
 /home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles/bisection.dir
+/home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles/run_data.dir
 /home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles/edit_cache.dir
 /home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles/rebuild_cache.dir

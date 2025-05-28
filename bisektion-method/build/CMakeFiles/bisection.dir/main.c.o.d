@@ -32,4 +32,5 @@ CMakeFiles/bisection.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /home/ilya/Proga_MSU/2_sem/bisektion_method/bisection.h \
- /home/ilya/Proga_MSU/2_sem/bisektion_method/functions.h
+ /home/ilya/Proga_MSU/2_sem/bisektion_method/functions.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h

@@ -129,6 +129,19 @@ bisection/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bisection.dir/build.make CMakeFiles/bisection.dir/build
 .PHONY : bisection/fast
 
+#=============================================================================
+# Target rules for targets named run_data
+
+# Build rule for target.
+run_data: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 run_data
+.PHONY : run_data
+
+# fast build rule for target.
+run_data/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_data.dir/build.make CMakeFiles/run_data.dir/build
+.PHONY : run_data/fast
+
 bisection.o: bisection.c.o
 .PHONY : bisection.o
 
@@ -209,6 +222,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... run_data"
 	@echo "... bisection"
 	@echo "... bisection.o"
 	@echo "... bisection.i"

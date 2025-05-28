@@ -64,10 +64,12 @@ CMAKE_BINARY_DIR = /home/ilya/Proga_MSU/2_sem/bisektion_method/build
 
 # The main recursive "all" target.
 all: CMakeFiles/bisection.dir/all
+all: CMakeFiles/run_data.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/bisection.dir/codegen
+codegen: CMakeFiles/run_data.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -76,6 +78,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/bisection.dir/clean
+clean: CMakeFiles/run_data.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -109,6 +112,38 @@ CMakeFiles/bisection.dir/codegen:
 CMakeFiles/bisection.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bisection.dir/build.make CMakeFiles/bisection.dir/clean
 .PHONY : CMakeFiles/bisection.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/run_data.dir
+
+# All Build rule for target.
+CMakeFiles/run_data.dir/all: CMakeFiles/bisection.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_data.dir/build.make CMakeFiles/run_data.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_data.dir/build.make CMakeFiles/run_data.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles --progress-num=5 "Built target run_data"
+.PHONY : CMakeFiles/run_data.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/run_data.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles 5
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/run_data.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles 0
+.PHONY : CMakeFiles/run_data.dir/rule
+
+# Convenience name for target.
+run_data: CMakeFiles/run_data.dir/rule
+.PHONY : run_data
+
+# codegen rule for target.
+CMakeFiles/run_data.dir/codegen: CMakeFiles/bisection.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_data.dir/build.make CMakeFiles/run_data.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ilya/Proga_MSU/2_sem/bisektion_method/build/CMakeFiles --progress-num=5 "Finished codegen for target run_data"
+.PHONY : CMakeFiles/run_data.dir/codegen
+
+# clean rule for target.
+CMakeFiles/run_data.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/run_data.dir/build.make CMakeFiles/run_data.dir/clean
+.PHONY : CMakeFiles/run_data.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
