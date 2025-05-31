@@ -42,27 +42,34 @@ void schultz_inverse(double* A, double* invA, int n, int iterations) {
     double *I = malloc(n * n * sizeof(double));
     double *AX = malloc(n * n * sizeof(double));
     double *tmp = malloc(n * n * sizeof(double));
+    double *AT = malloc(n * n * sizeof(double));
+    double *ATA = malloc(n * n * sizeof(double));
 
-    double* AT = malloc(n * n * sizeof(double));
+    if (!X || !I || !AX || !tmp || !AT || !ATA) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+
+
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             AT[idx(j, i, n)] = A[idx(i, j, n)];
 
-    double* ATA = malloc(n * n * sizeof(double));
-    mat_mul(AT, A, ATA, n);
 
+    mat_mul(AT, A, ATA, n);
     double tr = 0.0;
     for (int i = 0; i < n; ++i)
         tr += ATA[idx(i, i, n)];
 
     if (fabs(tr) < 1e-12) {
-        fprintf(stderr, "Matrix trace too small, possible singular matrix.\n");
+        fprintf(stderr, "Matrix is singular or nearly singular\n");
         exit(EXIT_FAILURE);
     }
 
-    scalar_mul(AT, 1.0 / tr, X, n);
 
+    scalar_mul(AT, 1.0/tr, X, n);
     identity_matrix(I, n);
+
 
     for (int k = 0; k < iterations; ++k) {
         mat_mul(A, X, AX, n);
@@ -74,5 +81,25 @@ void schultz_inverse(double* A, double* invA, int n, int iterations) {
 
     mat_copy(X, invA, n);
 
-    free(X); free(I); free(AX); free(tmp); free(AT); free(ATA);
+	
+    printf("A:\n");
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j)
+            printf("%.6f ", A[idx(i, j, n)]);
+        printf("\n");
+    }
+
+    double* result = malloc(n * n * sizeof(double));
+    mat_mul(A, invA, result, n);
+
+    printf("Result of A*invA:\n");
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            printf("%8.4f ", result[idx(i, j, n)]);
+        }
+        printf("\n");
+    }
+
+    free(X); free(I); free(AX); free(tmp);
+    free(AT); free(ATA); free(result);
 }

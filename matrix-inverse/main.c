@@ -2,13 +2,14 @@
 #include "matrix.h"
 
 int main() {
-    int n = 2;
+    int n = 3;
     double A[] = {
-        4, 7,
-        2, 6
+        1, 2, 3,
+        0, 4, 5,
+	0, 0, 6
     };
 
-    double invA[4];
+    double invA[9];
     schultz_inverse(A, invA, n, 10);
 
     printf("Inverse matrix:\n");
