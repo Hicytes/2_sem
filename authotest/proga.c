@@ -59,31 +59,26 @@ bool is_good_column(const struct MatrixData *data, int j) {
 }
 
 void process_matrix(struct MatrixData *data) {
-    bool *is_good = calloc(data->K, sizeof(bool));
-    if (!is_good) {
+    
+    int *good_cols = malloc(data->K * sizeof(int));
+    if (!good_cols) {
         handle_error("Memory alloc fail");
         return;
     }
 
+    
     int good_count = 0;
     for (int j = 0; j < data->K; ++j) {
         if (is_good_column(data, j)) {
-            is_good[j] = true;
-            good_count++;
+            good_cols[good_count++] = j; 
         }
     }
 
-    int *good_cols = malloc(good_count * sizeof(int));
-    if (!good_cols) {
-        free(is_good);
-        handle_error("Memory alloc fail");
-        return;
-    }
+    
+    
+    
 
-    int idx = 0;
-    for (int j = 0; j < data->K; ++j)
-        if (is_good[j]) good_cols[idx++] = j;
-
+    
     for (int i = 0; i < data->L; ++i) {
         for (int a = 0; a < good_count - 1; ++a) {
             for (int b = a + 1; b < good_count; ++b) {
@@ -97,8 +92,7 @@ void process_matrix(struct MatrixData *data) {
         }
     }
 
-    free(is_good);
-    free(good_cols);
+    free(good_cols); 
 }
 
 int write_result(const struct MatrixData *data) {

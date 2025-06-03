@@ -1,0 +1,17 @@
+#define HELLO Привет
+#define WORLD мир
+
+HELLO, WORLD!
+
+#undef WORLD
+#define WORLD вселенной
+
+HELLO, WORLD!
+
+#define PUNCT ,
+#define EXCL !
+HELLO PUNCT WORLD EXCL
+
+#define TEST Тестовая строка
+Это обычный текст без макросов.
+А это TEST с макросом.
